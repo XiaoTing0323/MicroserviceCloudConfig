@@ -1,0 +1,82 @@
+spring:
+  profiles:
+    active:
+    - dev
+
+---
+server:
+  port: 8001
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-provider-client
+  datasource:
+    #type: oracle.jdbc.pool.OracleDataSource
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XIAOTING
+    username: C##microserviceTest
+    password: 123456
+    dbcp2:
+      max-idle: 10
+        #等待连接获取的最大超时时间
+      max-wait: 10000
+        #数据库连接池的最大维持连接数
+      min-idle: 5
+        #初始化连接数
+      initial-size: 5
+
+mybatis:
+  #mybatis配置文件所在路径
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  #所有Entity别名类所在包
+  type-aliases-package: com.xiaoting.springcloud.entities
+  #Mapper映射文件
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: provider8001
+
+---
+server:
+  port: 8001
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-provider-client
+  datasource:
+    #type: oracle.jdbc.pool.OracleDataSource
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XIAOTING
+    username: C##microserviceTest
+    password: 123456
+    dbcp2:
+      max-idle: 10
+      #等待连接获取的最大超时时间
+      max-wait: 10000
+      #数据库连接池的最大维持连接数
+      min-idle: 5
+      #初始化连接数
+      initial-size: 5
+
+mybatis:
+  #mybatis配置文件所在路径
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  #所有Entity别名类所在包
+  type-aliases-package: com.xiaoting.springcloud.entities
+  #Mapper映射文件
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: provider8001
